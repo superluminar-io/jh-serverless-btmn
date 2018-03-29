@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources: 
+
+  DBTable: 
+    Type: AWS::DynamoDB::Table
+    Properties: 
+      AttributeDefinitions: 
+        - 
+          AttributeName: "KundenNummer"
+          AttributeType: "N"
+        - 
+          AttributeName: "Tiefenentladung"
+          AttributeType: "N"
+        - 
+          AttributeName: "EquipmentNummer"
+          AttributeType: "S"
+        - 
+          AttributeName: "InterneNummer"
+          AttributeType: "S"
+        - 
+          AttributeName: "Fahrer"
+          AttributeType: "S"
+        - 
+          AttributeName: "EinsatzStart"
+          AttributeType: "N"
+        - 
+          AttributeName: "EinsatzEnde"
+          AttributeType: "N"
+        - 
+          AttributeName: "LadestandStart"
+          AttributeType: "N"
+        - 
+          AttributeName: "LadestandEnde"
+          AttributeType: "N"
+      KeySchema: 
+        - 
+          AttributeName: "KundenNummer"
+          KeyType: "RANGE"
+      ProvisionedThroughput: 
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"

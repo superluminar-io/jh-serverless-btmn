@@ -1,0 +1,26 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: true
+      UserPoolName: !Sub "${AWS::StackName}_users"
+
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ExplicitAuthFlows:
+      - ADMIN_NO_SRP_AUTH
+      GenerateSecret: false
+      UserPoolId: !Ref UserPool
+
+Outputs:
+  UserPoolId:
+    Description: ID of the Cognito UserPool
+    Value: !Ref UserPool
+  UserPoolClientId:
+    Description: ID of the Cognito UserPool Client ID
+    Value: !Ref UserPoolClient
